@@ -1,0 +1,12 @@
+/home/local/EZDI/navneet.k/springproject/cellphone/src/main/java/com/ezdi/model/CellphoneModel.java
+/home/local/EZDI/navneet.k/springproject/cellphone/src/main/java/com/ezdi/model/CellphoneBrand.java
+/home/local/EZDI/navneet.k/springproject/cellphone/src/main/java/com/ezdi/service/impl/CellphoneDBServiceImpl.java
+/home/local/EZDI/navneet.k/springproject/cellphone/src/main/java/com/ezdi/controller/TestDatabase.java
+/home/local/EZDI/navneet.k/springproject/cellphone/src/main/java/com/ezdi/controller/CellphoneViewController.java
+/home/local/EZDI/navneet.k/springproject/cellphone/src/main/java/com/ezdi/dao/CellphoneDao.java
+/home/local/EZDI/navneet.k/springproject/cellphone/src/main/java/com/ezdi/controller/CellphoneController.java
+/home/local/EZDI/navneet.k/springproject/cellphone/src/main/java/com/ezdi/controller/CellphoneDeleteController.java
+/home/local/EZDI/navneet.k/springproject/cellphone/src/main/java/com/ezdi/model/CellphoneInfo.java
+/home/local/EZDI/navneet.k/springproject/cellphone/src/main/java/com/ezdi/service/CellphoneDBService.java
+/home/local/EZDI/navneet.k/springproject/cellphone/src/main/java/com/ezdi/dao/impl/CellphoneDaoImpl.java
+/home/local/EZDI/navneet.k/springproject/cellphone/src/main/java/com/ezdi/controller/CellphoneInsertController.java
