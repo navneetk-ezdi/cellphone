@@ -7,10 +7,12 @@ import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 import org.springframework.stereotype.Component;
 
+import static com.ezdi.constant.CellphoneConstant.*;
 import com.ezdi.model.CellphoneBrand;
 import com.ezdi.model.CellphoneInfo;
 import com.ezdi.model.CellphoneModel;
 import com.ezdi.service.CellphoneDBService;
+
 @Component
 public class CellphoneDBServiceImpl implements CellphoneDBService {
 
@@ -73,11 +75,13 @@ public class CellphoneDBServiceImpl implements CellphoneDBService {
 	}
 
 	public int deleteCellphoneInfo(Session session, int modelId) {
-		CellphoneModel cpModel = new CellphoneModel();
-		cpModel.setId(modelId);
-		session.delete(cpModel);
 		CellphoneModel cModel = (CellphoneModel) session.get(CellphoneModel.class, modelId);
-		if(null == cModel) {
+		if(null != cModel) {
+			session.beginTransaction();
+			CellphoneModel cpModel = new CellphoneModel();
+			cpModel.setId(modelId);
+			session.delete(cpModel);
+			session.getTransaction().commit();
 			return 1;
 		}
 		return 0;
@@ -103,12 +107,15 @@ public class CellphoneDBServiceImpl implements CellphoneDBService {
         	cpInfo.setModelThickness(cModel.getModelThickness());
         	cpInfo.setModelColor(cModel.getModelColor());
         	cpInfo.setModelReleaseDate(cModel.getModelReleaseDate());
+        	cpInfo.setWorkName(INSERT);
+        	cpInfo.setWorkStatus(SUCCESSFULLY_DONE);
         	return cpInfo;
         }
 		return null;
 	}
 
 	public void closeSession(Session session) {
+		session.disconnect();
 		session.close();
 	}
 

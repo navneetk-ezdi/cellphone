@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+xmlns:beans="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:sec="http://www.springframework.org/schema/security"
+xsi:schemaLocation="http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+    http://www.springframework.org/schema/security 
+    http://www.springframework.org/schema/security/spring-security-4.0.xsd">
+    
+    <authentication-manager id="in-memory-auth">
+		<authentication-provider>
+			<user-service>
+				<user name="navneet" password="nvnt8891" authorities="ROLE_ADMIN" />
+			</user-service>
+		</authentication-provider>
+	</authentication-manager>
+	
+ 	<http authentication-manager-ref="in-memory-auth" use-expressions="true" >
+ 		<!-- <intercept-url pattern="/login" access="isAnonymous()" /> -->
+		<intercept-url pattern="/view/**" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/insert/**" access="isAuthenticated() and hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/delete/**" access="isAuthenticated() and hasRole('ROLE_ADMIN')" />
+		<form-login login-page="/login"  authentication-failure-url="/denied"
+			username-parameter="username" password-parameter="password"
+			default-target-url="/home" login-processing-url="/home" />
+		<logout invalidate-session="true" logout-success-url="/login"
+			logout-url="/logout" />
+		<access-denied-handler error-page="/denied"/>
+		<session-management invalid-session-url="/login">
+			<concurrency-control max-sessions="1"
+				expired-url="/login" />
+		</session-management>
+	</http>  
+
+	
+
+
+<!-- <beans:bean id="userLoginService"
+		class="com.ezdi.security.dao.UserLoginServiceDao" />
+
+	<authentication-manager id="dao-auth">
+		<authentication-provider user-service-ref="userLoginService">
+		</authentication-provider>
+	</authentication-manager>
+
+	
+
+	<authentication-manager id="jdbc-auth">
+		<authentication-provider>
+			<jdbc-user-service data-source-ref="dataSource" 
+				users-by-username-query="select username,password,enabled from USER_LOGIN where username = ?"
+				authorities-by-username-query="select username,role from USER_ROLE where username = ?" />
+		</authentication-provider>
+	</authentication-manager>
+
+	MySQL DB DataSource
+	<beans:bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+
+		<beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<beans:property name="url"
+			value="jdbc:mysql://localhost:3306/cellphone" />
+		<beans:property name="username" value="navneet" />
+		<beans:property name="password" value="nvnt8891" />
+	</beans:bean> -->
+
+</beans:beans>

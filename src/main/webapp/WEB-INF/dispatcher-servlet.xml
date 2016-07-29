@@ -21,6 +21,6 @@ http://www.springframework.org/schema/mvc
 			<value>.jsp</value>
 		</property>
 	</bean>
-	
+	<mvc:view-controller path="/login" view-name="login" />
 	<mvc:annotation-driven />
 </beans>

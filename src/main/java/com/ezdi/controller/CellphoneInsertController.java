@@ -1,5 +1,7 @@
 package com.ezdi.controller;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import static com.ezdi.constant.CellphoneConstant.*;
 import com.ezdi.dao.CellphoneDao;
 import com.ezdi.model.CellphoneInfo;
 import com.ezdi.model.WorkStatus;
@@ -17,37 +20,38 @@ public class CellphoneInsertController {
 	@Autowired
 	private CellphoneDao cpDao;
 
-	@RequestMapping("/insert")
-	public @ResponseBody WorkStatus insert(HttpServletRequest request) {
+	@RequestMapping(SLASH + INSERT)
+	public @ResponseBody WorkStatus insert(HttpServletRequest request) throws IOException {
 		CellphoneInfo cpInfo = new CellphoneInfo();
-		cpInfo.setBrandName(request.getParameter("brandName"));
-		cpInfo.setModelName(request.getParameter("modelName"));
-		cpInfo.setModelColor(request.getParameter("modelColor"));
-		cpInfo.setModelType(request.getParameter("modelType"));
-		cpInfo.setModelScreenSize(Float.parseFloat(request.getParameter("modelScreenSize")));
-		cpInfo.setModelLength(Float.parseFloat(request.getParameter("modelLength")));
-		cpInfo.setModelBreadth(Float.parseFloat(request.getParameter("modelBreadth")));
-		cpInfo.setModelThickness(Float.parseFloat(request.getParameter("modelThickness")));
-		cpInfo.setModelOS(request.getParameter("modelOS"));
-		cpInfo.setModelProcessor(request.getParameter("modelProcessor"));
-		cpInfo.setModelRAM(Integer.parseInt(request.getParameter("modelRAM")));
-		cpInfo.setModelInternalMemory(Integer.parseInt(request.getParameter("modelInternalMemory")));
-		if ("SUCCESS".equals(cpDao.insertModelInfo(cpInfo))) {
-			return new WorkStatus("INSERT", "SUCCESSFULLY DONE");
+		cpInfo.setBrandName(request.getParameter(C_BRAND_NAME));
+		cpInfo.setModelName(request.getParameter(MODEL_NAME));
+		cpInfo.setModelColor(request.getParameter(MODEL_COLOR));
+		cpInfo.setModelType(request.getParameter(MODEL_TYPE));
+		cpInfo.setModelScreenSize(Float.parseFloat(request.getParameter(MODEL_SCREEN_SIZE)));
+		cpInfo.setModelLength(Float.parseFloat(request.getParameter(MODEL_LENGTH)));
+		cpInfo.setModelBreadth(Float.parseFloat(request.getParameter(MODEL_BREADTH)));
+		cpInfo.setModelThickness(Float.parseFloat(request.getParameter(MODEL_THICKNESS)));
+		cpInfo.setModelOS(request.getParameter(MODEL_OS));
+		cpInfo.setModelProcessor(request.getParameter(MODEL_PROCESSOR));
+		cpInfo.setModelRAM(Integer.parseInt(request.getParameter(MODEL_RAM)));
+		cpInfo.setModelInternalMemory(Integer.parseInt(request.getParameter(MODEL_INTERNAL_MEMORY)));
+		if (SUCCESS.equals(cpDao.insertModelInfo(cpInfo))) {
+			return new WorkStatus(INSERT, SUCCESSFULLY_DONE);
 		}
-		return new WorkStatus("INSERT", "FAILED");
+		return new WorkStatus(INSERT, FAILED);
 	}
 
-	@RequestMapping("/insert/brandid/{brandId}/brandname/{brandName}")
-	public @ResponseBody WorkStatus insert(@PathVariable(value = "brandId") String brandId,
-			@PathVariable(value = "brandName") String brandName, HttpServletRequest request) {
+	@RequestMapping(SLASH + INSERT + SLASH + BRAND_ID + SLASH + OPEN_BRAC + BRAND_ID + CLOSE_BRAC 
+			+ SLASH + BRAND_NAME + SLASH + OPEN_BRAC + BRAND_NAME + CLOSE_BRAC)
+	public @ResponseBody WorkStatus insert(@PathVariable(value = BRAND_ID) String brandId,
+			@PathVariable(value = BRAND_NAME) String brandName, HttpServletRequest request) {
 		CellphoneInfo cpInfo = new CellphoneInfo();
 		cpInfo.setBrandName(brandName);
 		cpInfo.setId(Integer.parseInt(brandId));
-		if ("SUCCESS".equals(cpDao.insertBrandInfo(cpInfo))) {
-			return new WorkStatus("INSERT", "SUCCESSFULLY DONE");
+		if (SUCCESS.equals(cpDao.insertBrandInfo(cpInfo))) {
+			return new WorkStatus(INSERT, SUCCESSFULLY_DONE);
 		}
-		return new WorkStatus("INSERT", "FAILED");
+		return new WorkStatus(INSERT, FAILED);
 	}
 
 }

@@ -25,3 +25,17 @@ CREATE TABLE `CELLPHONE_MODEL` (
 	KEY `CELLPHONE_FK` (`CELLPHONE_ID`),
 	CONSTRAINT `CELLPHONE_FK` FOREIGN KEY (`CELLPHONE_ID`) REFERENCES `CELLPHONE_BRAND` (`CELLPHONE_ID`)
 );
+
+CREATE TABLE `USER_LOGIN` (
+	`username` varchar(100) NOT NULL,
+	`password` varchar(45) NOT NULL,
+	`enabled` char(1) NOT NULL
+);
+
+CREATE TABLE `USER_ROLE` (
+	`username` varchar(100) NOT NULL,
+	`role` varchar(45) NOT NULL
+);
+
+insert into USER_LOGIN values("navneet","nvnt8891",'y');
+insert into USER_ROLE values("navneet","admin");

@@ -9,10 +9,7 @@ pageEncoding="ISO-8859-1"%>
 </head>
 <body>
 <center>
-Cellphone Data Management<br>
-<h6>To delete cellphone model data : type "/delete/{modelId}</h6><br>
-<h6>To view cellphone model data : type "/view/{modelId}</h6><br>
-<h6>To insert cellphone model data : </h6><a href="insert.jsp">Click Here</a><br>
+Welcome to Cellphone model management system.
 </center>
 </body>
 </html>

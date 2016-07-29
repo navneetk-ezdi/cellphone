@@ -9,7 +9,7 @@
 <body>
 <center>
 <h1>Cellphone Entry Form</h1>
-<form action="/cellphone/insert" method="post">
+<form action="../insert" method="post">
  
 Brand Name  :<input type = "text" name = "brandName"/><br>
  
