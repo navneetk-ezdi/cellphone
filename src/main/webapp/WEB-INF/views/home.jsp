@@ -10,7 +10,7 @@
 <br>Cellphone Data Management<br>
 <h6>To delete cellphone model data : type "/delete/{modelId}</h6><br>
 <h6>To view cellphone model data : type "/view/{modelId}</h6><br>
-<h6>To insert cellphone model data : </h6><a href="views/insert.jsp">Click Here</a><br>
+<h6>To insert cellphone model data : </h6><a href="gotoinsert">Goto Insert Page</a><br>
 <form action="logout">
 	<input type="submit" value="Logout" />
 </form>

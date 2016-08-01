@@ -26,16 +26,27 @@ CREATE TABLE `CELLPHONE_MODEL` (
 	CONSTRAINT `CELLPHONE_FK` FOREIGN KEY (`CELLPHONE_ID`) REFERENCES `CELLPHONE_BRAND` (`CELLPHONE_ID`)
 );
 
-CREATE TABLE `USER_LOGIN` (
-	`username` varchar(100) NOT NULL,
-	`password` varchar(45) NOT NULL,
-	`enabled` char(1) NOT NULL
-);
-
-CREATE TABLE `USER_ROLE` (
-	`username` varchar(100) NOT NULL,
-	`role` varchar(45) NOT NULL
-);
-
-insert into USER_LOGIN values("navneet","nvnt8891",'y');
-insert into USER_ROLE values("navneet","admin");
+CREATE  TABLE users (
+  username VARCHAR(45) NOT NULL ,
+  password VARCHAR(45) NOT NULL ,
+  enabled TINYINT NOT NULL DEFAULT 1 ,
+  PRIMARY KEY (username));
+   
+CREATE TABLE user_roles (
+  user_role_id int(11) NOT NULL AUTO_INCREMENT,
+  username varchar(45) NOT NULL,
+  role varchar(45) NOT NULL,
+  PRIMARY KEY (user_role_id),
+  UNIQUE KEY uni_username_role (role,username),
+  KEY fk_username_idx (username),
+  CONSTRAINT fk_username FOREIGN KEY (username) REFERENCES users (username));
+  
+INSERT INTO users(username,password,enabled)
+VALUES ('navneet','nvnt8891', true);
+INSERT INTO users(username,password,enabled)
+VALUES ('kunal','nvnt8891', true);
+ 
+INSERT INTO user_roles (username, role)
+VALUES ('navneet', 'ROLE_ADMIN');
+INSERT INTO user_roles (username, role)
+VALUES ('kunal', 'ROLE_ADMIN');

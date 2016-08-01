@@ -9,17 +9,32 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 import static com.ezdi.constant.CellphoneConstant.*;
 
+import javax.sql.DataSource;
+
 @Configuration
 @EnableWebSecurity
 public class LoginSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
+	 DataSource dataSource;
+	  
+	 @Autowired
+	 public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
+	   
+	   auth.jdbcAuthentication().dataSource(dataSource)
+	  .usersByUsernameQuery(
+	   "select username,password, enabled from users where username=?")
+	  .authoritiesByUsernameQuery(
+	   "select username, role from user_roles where username=?");
+	 } 
+	 
+	/*@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder authenticationMgr) throws Exception {
 		authenticationMgr.inMemoryAuthentication()
 			.withUser("navneet")
 			.password("nvnt8891")
 			.authorities(ROLE_ADMIN);
-	}
+	}*/
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {

@@ -22,4 +22,9 @@ public class CellphoneLoginController {
 	public String home(HttpServletRequest request, Model model) throws IOException{
 		return HOME;
 	}
+	
+	@RequestMapping(value=SLASH + GOTOINSERT)
+	public String insert(HttpServletRequest request, Model model) throws IOException{
+		return INSERT;
+	}
 }
