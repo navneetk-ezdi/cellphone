@@ -39,5 +39,7 @@ public interface CellphoneConstant {
 	public static String ROLE_ADMIN = "ROLE_ADMIN";
 	public static String HAS_ROLE_ADMIN = "hasRole('ROLE_ADMIN')";
 	public static String GOTOINSERT = "gotoinsert";
+	public static String INVALID = "invalid";
+	public static String EXPIRED = "expired";
 	
 }

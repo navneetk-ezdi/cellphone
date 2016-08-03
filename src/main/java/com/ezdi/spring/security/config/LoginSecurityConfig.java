@@ -47,11 +47,15 @@ public class LoginSecurityConfig extends WebSecurityConfigurerAdapter {
 				.formLogin().loginPage(SLASH + LOGIN)
 				.defaultSuccessUrl(SLASH + HOME,true)
 				.failureUrl(SLASH + DENIED)
-				.usernameParameter(USERNAME).passwordParameter(PASSWORD)				
-			.and()
-				.logout().logoutSuccessUrl(SLASH + LOGOUT)
-				.and().csrf().disable()
-		        .exceptionHandling().accessDeniedPage(SLASH + DENIED); 
+				.usernameParameter(USERNAME).passwordParameter(PASSWORD)	
+				.and().logout().disable()
+				.csrf().disable()
+		        .exceptionHandling().accessDeniedPage(SLASH + DENIED)
+		        
+		    .and()
+		    	.sessionManagement()
+		    		.maximumSessions(1)
+		    		.expiredUrl(SLASH + EXPIRED); 
 		
 	}
 }
