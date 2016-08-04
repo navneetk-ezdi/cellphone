@@ -49,7 +49,8 @@ public class LoginSecurityConfig extends WebSecurityConfigurerAdapter {
 				.failureUrl(SLASH + DENIED)
 				.usernameParameter(USERNAME).passwordParameter(PASSWORD)	
 				.and().logout().disable()
-				.csrf().disable()
+				.csrf().ignoringAntMatchers(SLASH + LOGIN).ignoringAntMatchers(SLASH + LOGOUT)
+				.and()
 		        .exceptionHandling().accessDeniedPage(SLASH + DENIED)
 		        
 		    .and()

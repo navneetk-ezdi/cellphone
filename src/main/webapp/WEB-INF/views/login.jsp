@@ -13,6 +13,7 @@
 		User ID:<input type='text' id='username' name='username' /><br>
 		Password:<input type='password' id='password' name='password' /><br>
 		<input name="submit" type="submit" value="Login" />
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 	</form>
 </body>
 </html>
